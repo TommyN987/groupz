@@ -1,5 +1,7 @@
 <a href="/">
     <h1>LOGO</h1>
 </a>
-
-<hr>
+<form action="{% url 'home' %}" method="GET">
+    <input type="text" name="q" placeholder="Search Groups" />
+</form>
+<hr />

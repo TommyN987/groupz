@@ -1,13 +1,23 @@
 from django.shortcuts import render, redirect
-from .models import Group
+from django.db.models import Q
+from .models import Group, Topic
 from .forms import GroupForm
-
-# Create your views here.
 
 
 def home(request):
-    groups = Group.objects.all()
-    context = {'groups': groups}
+    q = request.GET.get('q') if request.GET.get('q') is not None else ''
+
+    groups = Group.objects.filter(
+        Q(topic__name__icontains=q) |
+        Q(name__icontains=q) |
+        Q(description__icontains=q)
+    )
+
+    topics = Topic.objects.all()
+    group_count = groups.count()
+
+    context = {'groups': groups, 'group_count': group_count, 'topics': topics}
+
     return render(request, 'base/home.html', context)
 
 
