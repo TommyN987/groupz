@@ -1,0 +1,17 @@
+{% extends 'main.html' %} {% block content %}
+
+<h1>HOME template</h1>
+
+<div>
+  <div>
+    {% for group in groups %}
+    <div>
+      <h5>
+        {{group.id}} -- <a href="{% url 'group' group.id %}">{{group.name}}</a>
+      </h5>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
