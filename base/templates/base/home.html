@@ -3,17 +3,21 @@
 <h1>HOME template</h1>
 
 <div>
-  <div>
-    {% for group in groups %}
+    <a href="{% url 'create-group' %}">Create Group</a>
     <div>
-      <span>@{{group.host.username}}</span>
-      <h5>
-        {{group.id}} -- <a href="{% url 'group' group.id %}">{{group.name}}</a>
-      </h5>
-      <small>{{group.topic.name}}</small>
+        {% for group in groups %}
+        <div>
+            <a href="{% url 'update-group' group.id %}">Edit</a>
+            <a href="{% url 'delete-group' group.id %}">Delete</a>
+            <span>@{{group.host.username}}</span>
+            <h5>
+                {{group.id}} --
+                <a href="{% url 'group' group.id %}">{{group.name}}</a>
+            </h5>
+            <small>{{group.topic.name}}</small>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-  </div>
 </div>
 
 {% endblock %}
