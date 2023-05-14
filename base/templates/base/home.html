@@ -6,9 +6,11 @@
   <div>
     {% for group in groups %}
     <div>
+      <span>@{{group.host.username}}</span>
       <h5>
         {{group.id}} -- <a href="{% url 'group' group.id %}">{{group.name}}</a>
       </h5>
+      <small>{{group.topic.name}}</small>
     </div>
     {% endfor %}
   </div>
