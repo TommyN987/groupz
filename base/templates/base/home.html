@@ -25,9 +25,11 @@
         <a href="{% url 'create-group' %}">Create Group</a>
         <div>
             {% for group in groups %}
-            <div>
+            <div style="border: 1px solid black; margin-bottom: 2px">
+                {% if request.user == group.host %}
                 <a href="{% url 'update-group' group.id %}">Edit</a>
                 <a href="{% url 'delete-group' group.id %}">Delete</a>
+                {% endif %}
                 <span>@{{group.host.username}}</span>
                 <h5>
                     {{group.id}} --
